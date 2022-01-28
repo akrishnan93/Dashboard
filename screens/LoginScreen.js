@@ -1,10 +1,32 @@
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
-import React from 'react';
-import DeprecatedStyleSheetPropType from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedStyleSheetPropType';
+import React, { useEffect, useState } from 'react'
+import { auth } from '../firebase'
+
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const handleSignUp = () => {
+        auth
+          .createUserWithEmailAndPassword(email, password)
+          .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log('Registered with:', user.email);
+          })
+          .catch(error => alert(error.message))
+      }
+    
+      const handleLogin = () => {
+        auth
+          .signInWithEmailAndPassword(email, password)
+          .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log('Logged in with:', user.email);
+          })
+          .catch(error => alert(error.message))
+      }
+
   return (
     <KeyboardAvoidingView
         style={styles.container}
@@ -29,14 +51,14 @@ const LoginScreen = () => {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-            onPress={()=> { }}
+            onPress={handleLogin}
             style = {[styles.button]}
         >
             <Text style = {styles.buttonText}>Login</Text>
         </TouchableOpacity>    
 
         <TouchableOpacity
-            onPress={()=> { }}
+            onPress={handleSignUp}
             style = {[styles.button, styles.buttonOutline]} 
         >
             <Text style = {styles.buttonOutlineText}>Register</Text>
