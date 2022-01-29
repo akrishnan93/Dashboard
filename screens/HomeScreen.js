@@ -20,6 +20,7 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style = {styles.image}>
+        <DateTime />
         <Text>Email: {auth.currentUser?.email}</Text>
         <TouchableOpacity
           onPress={handleSignOut}
