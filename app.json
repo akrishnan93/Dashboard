@@ -2,6 +2,8 @@
   "expo": {
     "name": "Dashboard",
     "slug": "Dashboard",
+    "privacy": "public",
+    "description": "A dashboard application that gives user personalized information about their day to give them a head start towards success!",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
