@@ -1,10 +1,16 @@
 import React from 'react';
 import {View, ScrollView, Image, Text, StyleSheet} from 'react-native'
 
+import FutureForecast from './FutureForecast';
+
 const WeatherScoll = () => {
   return (
     <ScrollView horizontal={true} style={styles.scrollView}>
         <CurrentTempEl></CurrentTempEl>
+        <FutureForecast />
+        <FutureForecast />
+        <FutureForecast />
+        <FutureForecast />
     </ScrollView>
   )
 };
@@ -29,12 +35,12 @@ const styles = StyleSheet.create({
         height: 150
     },
     scrollView: {
-        flex:0.4,
+        flex:1,
         backgroundColor: '#18181bcc',
-        padding:30
+        padding:20,
     },
     otherContainer: {
-        paddingRight: 40
+        paddingRight:20
     },
     currentTempContainer: {
         flexDirection: 'row',
@@ -44,7 +50,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor:'#eee',
         borderWidth:1,
-        padding: 15
+        padding: 15,
+        marginRight: 30
     },
     day: {
         fontSize: 20,
