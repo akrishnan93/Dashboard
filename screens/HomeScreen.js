@@ -1,13 +1,39 @@
 import { useNavigation } from '@react-navigation/core'
-import React from 'react'
+import React, {useEffect, useState}from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native'
 import { auth } from '../firebase'
 import DateTime from '../components/DateTime.js'
 import WeatherScoll from '../components/WeatherScoll'
+import * as Location from 'expo-location';
 
 const HomeScreen = () => {
   const navigation = useNavigation()
   const image = require('../assets/bg_image.png')
+  const API_KEY = "2d8d10edfb9a8be575c9651a2e7881a0";
+
+  const [data, setData] = useState({});
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        fetchDataFromApi("40.7128", "-74.0060")
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      fetchDataFromApi(location.coords.latitude, location.coords.longitude);
+    })();
+  }, [])
+
+  const fetchDataFromApi = (latitude, longitude) => {
+    if(latitude && longitude) {
+      fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=imperial&appid=${API_KEY}`).then(res => res.json()).then(data => {
+      setData(data)
+      console.log(data);
+      })
+    }
+  }
+
 
   const handleSignOut = () => {
     auth
@@ -21,8 +47,8 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style = {styles.image}>
-        <DateTime />
-        <WeatherScoll />
+        <DateTime current={data.current} timezone={data.timezone} lat={data.lat} lon={data.lon}/>
+        <WeatherScoll weatherData={data.daily}/>
         <Text>Email: {auth.currentUser?.email}</Text>
         <TouchableOpacity
           onPress={handleSignOut}
