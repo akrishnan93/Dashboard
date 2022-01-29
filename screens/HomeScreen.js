@@ -49,7 +49,7 @@ const HomeScreen = () => {
       <ImageBackground source={image} style = {styles.image}>
         <DateTime current={data.current} timezone={data.timezone} lat={data.lat} lon={data.lon}/>
         <WeatherScoll weatherData={data.daily}/>
-        <Text>Email: {auth.currentUser?.email}</Text>
+        <Text style={styles.emailText}>Email: {auth.currentUser?.email}</Text>
         <TouchableOpacity
           onPress={handleSignOut}
           style={styles.button}
@@ -69,16 +69,27 @@ const styles = StyleSheet.create({
   },
    button: {
     backgroundColor: '#0782F9',
-    width: '60%',
+    // width: '60%',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
-    marginTop: 40,
+    justifyContent: 'center',
+    // marginTop: 20,
   },
   buttonText: {
     color: 'white',
     fontWeight: '700',
     fontSize: 16,
+    position: 'relative',
   },
-  image: {flex:1, resizeMode: "cover", justifyContent: "center"}
+  image: {flex:1, resizeMode: "cover", justifyContent: "center"},
+  emailText: {
+    marginTop: 50,
+    marginLeft: 30,
+    marginBottom: 10,
+    fontSize: 20,
+    color: '#eee',
+    fontWeight: '300',
+    alignContent: "center"
+  },
 })
