@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Image } from 'react-native';
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/core'
 import { auth } from '../firebase'
@@ -7,6 +7,7 @@ import { auth } from '../firebase'
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const image = require("../assets/appIcon.png")
 
     const navigation = useNavigation()
 
@@ -45,6 +46,7 @@ const LoginScreen = () => {
         style={styles.container}
         behavior="padding"
     >
+        <Image style = {styles.image} source = {image}/>
       <View style = {styles.inputContainer}>
         <TextInput
             placeholder="Email"
@@ -127,5 +129,8 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 16,
       },
+      image: {
+          marginBottom: 40
+      }
 });
  

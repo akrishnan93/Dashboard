@@ -6,7 +6,7 @@
     "description": "A dashboard application that gives user personalized information about their day to give them a head start towards success!",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/appIcon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -31,7 +31,7 @@
       "permissions":["LOCATION"]
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon-dashboard.png"
     }
   }
 }
