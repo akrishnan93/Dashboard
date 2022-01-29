@@ -3,6 +3,7 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native'
 import { auth } from '../firebase'
 import DateTime from '../components/DateTime.js'
+import WeatherScoll from '../components/WeatherScoll'
 
 const HomeScreen = () => {
   const navigation = useNavigation()
@@ -21,6 +22,7 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <ImageBackground source={image} style = {styles.image}>
         <DateTime />
+        <WeatherScoll />
         <Text>Email: {auth.currentUser?.email}</Text>
         <TouchableOpacity
           onPress={handleSignOut}
